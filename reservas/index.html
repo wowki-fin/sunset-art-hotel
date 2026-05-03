@@ -421,6 +421,16 @@
     const form = document.querySelector('.octobook form');
     if (!form) { setTimeout(initOctoWidget, 250); return; }
 
+    // Click anywhere in a section → trigger its input
+    document.querySelectorAll('.octobook-date, .octobookpax').forEach(function(section) {
+      section.style.cursor = 'pointer';
+      section.addEventListener('click', function(e) {
+        if (e.target.tagName === 'INPUT') return; // already on input, skip
+        var input = section.querySelector('input');
+        if (input) input.click();
+      });
+    });
+
     // Point results to our iframe instead of _top
     form.setAttribute('target', 'octorate-results');
 
