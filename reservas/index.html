@@ -210,10 +210,10 @@
     border-radius: 0 !important;
   }
 
-  /* Date fields — column flex, vertically centered */
+  /* Date fields — row flex, icon + label on same line */
   .octobook-date {
     flex: 1.3 !important;
-    padding: 0 18px !important;
+    padding: 0 14px !important;
     border-right: 1px solid #e8e2db !important;
     border-radius: 0 !important;
     background: transparent !important;
@@ -222,24 +222,24 @@
     min-height: 0 !important;
     position: relative !important;
     display: flex !important;
-    flex-direction: column !important;
-    justify-content: center !important;
-    align-items: flex-start !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    gap: 7px !important;
   }
   .octobook-date:hover { background: #f7f4f0 !important; border-radius: 50px !important; }
 
-  /* Pax / guests — column flex, vertically centered */
+  /* Pax / guests — row flex, icon + label on same line */
   .octobookpax {
     flex: 1 !important;
-    padding: 0 18px !important;
+    padding: 0 14px !important;
     background: transparent !important;
     border-radius: 0 !important;
     min-width: 0 !important;
     min-height: 0 !important;
     display: flex !important;
-    flex-direction: column !important;
-    justify-content: center !important;
-    align-items: flex-start !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    gap: 7px !important;
   }
   .octobookpax:hover { background: #f7f4f0 !important; border-radius: 50px !important; }
 
@@ -292,20 +292,21 @@
   .octobook * { min-height: 0 !important; }
   .octobookthemeROUNDED .octobooksubmit > div > input { min-height: 0 !important; min-width: 0 !important; }
 
-  /* Labels inside widget */
+  /* Labels inside widget — inline, light grey */
   .octobook-date label,
   .octobookpax label,
   .octobook label {
-    display: block !important;
+    display: inline !important;
     font-family: 'DM Sans', sans-serif !important;
-    font-size: 0.58rem !important;
-    font-weight: 700 !important;
-    letter-spacing: 0.18em !important;
-    text-transform: uppercase !important;
-    color: #b8922a !important;
-    margin-bottom: 2px !important;
+    font-size: 0.7rem !important;
+    font-weight: 400 !important;
+    letter-spacing: 0.05em !important;
+    text-transform: none !important;
+    color: #bbb !important;
+    margin: 0 !important;
     white-space: nowrap !important;
     line-height: 1 !important;
+    order: 2 !important;
   }
 
   /* Text inputs inside widget */
@@ -461,38 +462,47 @@
 
   // Widget labels in 3 languages
   var widgetLabels = {
-    en: { checkin: 'From', checkout: 'To', guests: 'Number of Guests' },
-    bg: { checkin: 'От', checkout: 'До', guests: 'Брой гости' },
-    es: { checkin: 'Desde', checkout: 'Hasta', guests: 'Número de huéspedes' }
+    en: { checkin: 'From', checkout: 'To', guests: 'Number of Guests',
+          error: 'Please select your check-in and check-out dates' },
+    bg: { checkin: 'От', checkout: 'До', guests: 'Брой гости',
+          error: 'Моля, изберете дати за настаняване и напускане' },
+    es: { checkin: 'Desde', checkout: 'Hasta', guests: 'Número de huéspedes',
+          error: 'Por favor selecciona las fechas de entrada y salida' }
   };
 
-  // Detect active lang from nav switcher
-  var activeLang = 'en';
-  var activeLangEl = document.querySelector('.lang-btn.active');
-  if (activeLangEl) {
-    var t = activeLangEl.textContent.trim().toLowerCase();
-    if (t === 'bg' || t === 'es') activeLang = t;
-  }
+  // Read language from localStorage (set by main page) or default to 'en'
+  var activeLang = localStorage.getItem('sunsetLang') || 'en';
 
   function applyLabels() {
-    var labels = widgetLabels[activeLang];
+    var labels = widgetLabels[activeLang] || widgetLabels['en'];
     var checkinLabel  = document.querySelector('.octobookcheckin label');
     var checkoutLabel = document.querySelector('.octobookcheckout label');
     var paxLabel      = document.querySelector('.octobookpax label');
     if (checkinLabel)  checkinLabel.textContent  = labels.checkin;
     if (checkoutLabel) checkoutLabel.textContent = labels.checkout;
     if (paxLabel)      paxLabel.textContent      = labels.guests;
+    document.getElementById('date-error').textContent = labels.error;
   }
 
-  // Switch lang label on click
+  function setActiveLangUI(lang) {
+    document.querySelectorAll('.lang-btn').forEach(function(b) { b.classList.remove('active'); });
+    document.querySelectorAll('.lang-btn').forEach(function(b) {
+      if (b.textContent.trim().toLowerCase() === lang) b.classList.add('active');
+    });
+  }
+
+  // Init active lang UI from stored value
+  setActiveLangUI(activeLang);
+
+  // Lang switcher — stay in /reservas/, just change labels
   document.querySelectorAll('.lang-btn').forEach(function(btn) {
     btn.addEventListener('click', function(e) {
       var lang = btn.textContent.trim().toLowerCase();
       if (widgetLabels[lang]) {
         e.preventDefault();
         activeLang = lang;
-        document.querySelectorAll('.lang-btn').forEach(function(b) { b.classList.remove('active'); });
-        btn.classList.add('active');
+        localStorage.setItem('sunsetLang', lang);
+        setActiveLangUI(lang);
         applyLabels();
       }
     });
