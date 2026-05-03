@@ -537,6 +537,24 @@
 
   // Apply labels after widget renders
   setTimeout(applyLabels, 600);
+
+  // Hover highlight on pax input via inline styles (bypasses Octorate CSS)
+  function addPaxHover() {
+    var pax = document.querySelector('.octobookpax');
+    if (!pax) { setTimeout(addPaxHover, 300); return; }
+    var input = pax.querySelector('input');
+    if (!input) { setTimeout(addPaxHover, 300); return; }
+    input.style.cursor = 'pointer';
+    input.style.borderRadius = '8px';
+    input.style.transition = 'background 0.18s';
+    input.addEventListener('mouseenter', function() {
+      this.style.background = 'rgba(0,0,0,0.06)';
+    });
+    input.addEventListener('mouseleave', function() {
+      this.style.background = 'transparent';
+    });
+  }
+  setTimeout(addPaxHover, 700);
 </script>
 
 </body>
