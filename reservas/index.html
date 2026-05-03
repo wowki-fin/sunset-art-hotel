@@ -289,6 +289,19 @@
     box-shadow: 0 6px 20px rgba(255,63,164,0.6) !important;
   }
 
+  /* Hover highlight on pax input — same style as calendar icon hover */
+  .octobookpax input[type="text"],
+  .octobookpax input[type="number"] {
+    border-radius: 8px !important;
+    padding: 4px 8px !important;
+    transition: background 0.18s !important;
+    cursor: pointer !important;
+  }
+  .octobookpax input[type="text"]:hover,
+  .octobookpax input[type="number"]:hover {
+    background: rgba(0,0,0,0.06) !important;
+  }
+
   /* Kill Octorate forced min-heights */
   .octobook * { min-height: 0 !important; }
   .octobookthemeROUNDED .octobooksubmit > div > input { min-height: 0 !important; min-width: 0 !important; }
