@@ -240,13 +240,14 @@
     flex-direction: row !important;
     align-items: center !important;
     gap: 7px !important;
+    overflow: hidden !important;
   }
   .octobookpax:hover { background: #f7f4f0 !important; border-radius: 50px !important; }
 
   /* Submit */
   .octobooksubmit {
     flex-shrink: 0 !important;
-    padding: 0 4px 0 6px !important;
+    padding: 0 6px 0 12px !important;
     display: flex !important;
     align-items: center !important;
     justify-content: center !important;
@@ -292,11 +293,13 @@
   .octobook * { min-height: 0 !important; }
   .octobookthemeROUNDED .octobooksubmit > div > input { min-height: 0 !important; min-width: 0 !important; }
 
-  /* Labels inside widget — inline, light grey */
+  /* Labels inside widget — inline, light grey, vertically centered */
   .octobook-date label,
   .octobookpax label,
   .octobook label {
-    display: inline !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    align-self: center !important;
     font-family: 'DM Sans', sans-serif !important;
     font-size: 1.12rem !important;
     font-weight: 400 !important;
@@ -305,6 +308,8 @@
     color: #bbb !important;
     margin: 0 !important;
     white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
     line-height: 1 !important;
     order: 2 !important;
   }
