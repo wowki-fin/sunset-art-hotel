@@ -121,24 +121,42 @@
   /* RESULTS IFRAME */
   #octorate-frame-wrap {
     display: none;
+    flex-direction: column;
+    height: calc(100vh - 82px);
+  }
+  .search-back-bar {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    padding: 0.75rem 2rem;
     background: var(--cream);
-    overflow: hidden;
+    border-bottom: 1px solid rgba(28,26,24,0.1);
+    flex-shrink: 0;
+  }
+  .search-back-btn {
+    background: transparent;
+    border: 1px solid var(--neon);
+    color: var(--neon);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.72rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    padding: 0.5rem 1.2rem;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .search-back-btn:hover { background: var(--neon); color: #fff; }
+  .search-back-summary {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 0.95rem;
+    color: var(--grey);
+    font-style: italic;
   }
   #octorate-frame {
     border: none;
     display: block;
-    /* Desktop: scale to 75% */
-    width: 133.33%;
-    height: 133.33vh;
-    transform: scale(0.75);
-    transform-origin: top left;
-  }
-  @media (max-width: 768px) {
-    #octorate-frame {
-      transform: none;
-      width: 100%;
-      height: 85vh;
-    }
+    width: 100%;
+    flex: 1;
   }
 
   /* FOOTER */
@@ -421,8 +439,12 @@
   </div>
 </div>
 
-<!-- RESULTS IFRAME -->
+<!-- RESULTS VIEW -->
 <div id="octorate-frame-wrap">
+  <div class="search-back-bar">
+    <button class="search-back-btn" id="search-back-btn">← Modify search</button>
+    <span class="search-back-summary" id="search-back-summary"></span>
+  </div>
   <iframe id="octorate-frame" name="octorate-results" title="Room availability"></iframe>
 </div>
 
@@ -478,11 +500,15 @@
         return false;
       }
 
-      // Dates present — hide error, show iframe
+      // Dates present — hide hero, show results full-height
       document.getElementById('date-error').style.display = 'none';
+      var checkinVal2  = checkinInput  ? checkinInput.value.trim()  : '';
+      var checkoutVal2 = checkoutInput ? checkoutInput.value.trim() : '';
+      document.getElementById('search-back-summary').textContent = checkinVal2 + ' → ' + checkoutVal2;
+      document.querySelector('.booking-hero').style.display = 'none';
       var wrap = document.getElementById('octorate-frame-wrap');
-      wrap.style.display = 'block';
-      setTimeout(function() { wrap.scrollIntoView({ behavior: 'smooth' }); }, 400);
+      wrap.style.display = 'flex';
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     });
 
     // Hide error when user picks a date
@@ -539,6 +565,13 @@
         applyLabels();
       }
     });
+  });
+
+  // Back to search
+  document.getElementById('search-back-btn').addEventListener('click', function() {
+    document.getElementById('octorate-frame-wrap').style.display = 'none';
+    document.querySelector('.booking-hero').style.display = '';
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   });
 
   initOctoWidget();
