@@ -306,8 +306,9 @@
     .rooms-grid { grid-template-columns: 1fr; }
     .say-info { grid-template-columns: 1fr; }
     .say-main-grid { grid-template-columns: 1fr !important; height: auto !important; max-height: none !important; }
-    .say-hero-wrap { height: 280px; }
-    .say-logo-badge { left: 1.5rem; }
+    .say-hero-wrap { height: 340px; }
+    .say-logo-badge { bottom: auto; top: 15%; left: 50%; transform: translateX(-50%); }
+    .say-neon-wrap { top: 70%; }
     footer { flex-direction: column; gap: 1.5rem; text-align: center; }
     .hero-content { padding: 0 1.5rem 4rem; }
     .hero-title { font-size: clamp(3.5rem, 12vw, 11rem); }
@@ -316,6 +317,7 @@
     .amenity:nth-child(odd) { border-right: 1px solid rgba(28,26,24,0.1) !important; }
     .gallery-item img { height: 240px; }
     .say-strip { padding: 0 1.5rem 2rem; }
+    section { scroll-margin-top: 110px; }
   }
 </style>
 </head>
