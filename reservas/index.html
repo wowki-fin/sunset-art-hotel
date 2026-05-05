@@ -316,7 +316,7 @@
     gap: 7px !important;
     overflow: hidden !important;
   }
-  .octobookpax:hover { background: #f7f4f0 !important; border-radius: 50px !important; }
+  .octobookpax:hover { background: transparent !important; border-radius: 0 !important; }
 
   /* Submit */
   .octobooksubmit {
@@ -383,6 +383,20 @@
   .octobookpax input[type="text"]:hover,
   .octobookpax input[type="number"]:hover {
     background: rgba(0,0,0,0.06) !important;
+  }
+
+  /* Pax number input — bigger, bold, fixed width so label is visible */
+  .octobookpax input[type="number"],
+  .octobookpax input[type="text"] {
+    font-size: 1.15rem !important;
+    font-weight: 700 !important;
+    color: var(--text) !important;
+    width: 40px !important;
+    flex-shrink: 0 !important;
+  }
+  /* Pax label — slightly bigger */
+  .octobookpax label {
+    font-size: 1rem !important;
   }
 
   /* Kill Octorate forced min-heights */
