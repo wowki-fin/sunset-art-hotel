@@ -316,7 +316,8 @@
     gap: 7px !important;
     overflow: hidden !important;
   }
-  .octobookpax:hover { background: #f7f4f0 !important; border-radius: 50px !important; }
+  .octobookpax:hover { background: transparent !important; }
+  @media (max-width: 768px) { .octobookpax:hover { background: transparent !important; border-radius: 0 !important; } }
 
   /* Submit */
   .octobooksubmit {
@@ -453,26 +454,36 @@
     .octobook-date:last-of-type { border-bottom: 1px solid #e8e2db !important; }
     .octobookpax {
       border-bottom: 1px solid #e8e2db !important; height: 52px !important;
-      flex-direction: row !important; position: relative !important; overflow: visible !important;
+      flex-direction: row !important; position: relative !important; overflow: hidden !important;
     }
-    /* Input covers the full pax row — tapping anywhere opens the keyboard on iOS */
+    /* "0" box — visible, tappable, glows on focus */
     .octobookpax input[type="number"] {
-      position: absolute !important; top: 0 !important; left: 0 !important;
-      right: 0 !important; bottom: 0 !important;
-      width: 100% !important; height: 100% !important;
-      padding: 0 0 0 14px !important;
-      font-size: 1.15rem !important; font-weight: 700 !important;
-      color: var(--text) !important; background: transparent !important;
-      border: none !important; outline: none !important;
-      z-index: 3 !important; cursor: pointer !important;
+      position: static !important;
+      width: 46px !important; height: 36px !important; flex-shrink: 0 !important;
+      font-size: 1.2rem !important; font-weight: 700 !important; color: var(--text) !important;
+      border: 1.5px solid rgba(28,26,24,0.22) !important; border-radius: 8px !important;
+      background: rgba(28,26,24,0.03) !important;
+      padding: 0 !important; text-align: center !important;
       -webkit-appearance: textfield !important; appearance: textfield !important;
+      transition: border-color 0.2s, box-shadow 0.2s !important;
     }
-    /* Label floats over the input, non-interactive */
+    .octobookpax input[type="number"]:focus {
+      border-color: #ff3fa4 !important;
+      background: rgba(255,63,164,0.05) !important;
+      box-shadow: 0 0 0 3px rgba(255,63,164,0.18) !important;
+      outline: none !important;
+    }
+    /* Label with arrow pointing left toward the "0" box */
     .octobookpax label {
-      position: absolute !important; left: 50px !important;
-      top: 50% !important; transform: translateY(-50%) !important;
-      pointer-events: none !important; z-index: 4 !important;
-      font-size: 1rem !important; line-height: 1 !important;
+      position: static !important; transform: none !important;
+      pointer-events: none !important;
+      font-size: 0.95rem !important; line-height: 52px !important;
+    }
+    .octobookpax label::before {
+      content: '← ';
+      color: #ff3fa4 !important;
+      font-size: 0.72rem !important;
+      font-weight: 500 !important;
     }
     .octobook label { line-height: 52px !important; }
     .octobooksubmit { padding: 8px !important; }
