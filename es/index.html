@@ -41,7 +41,7 @@
   }
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   html { scroll-behavior: smooth; }
-  body { background: var(--cream); color: var(--text); font-family: 'DM Sans', sans-serif; font-weight: 300; overflow-x: hidden; }
+  body { background: var(--cream); color: var(--text); font-family: 'DM Sans', sans-serif; font-weight: 300; overflow-x: hidden; overflow-anchor: none; }
 
   /* LANG SWITCHER */
   #lang-switcher {
@@ -319,8 +319,8 @@
     .gallery-item img { height: 240px; }
     .say-strip { padding: 0 1.5rem 2rem; }
     section { scroll-margin-top: 110px; }
+    #hero { height: 100svh; scroll-margin-top: 0; }
     .hero-title .art { text-shadow: 0 0 20px rgba(255,63,164,0.25), 0 0 40px rgba(255,63,164,0.1); }
-    #hero { height: 100svh; }
   }
 </style>
 <script>history.scrollRestoration = 'manual';</script>
@@ -704,14 +704,6 @@
 
 <script>
   localStorage.setItem('sunsetLang', 'es');
-
-  const t = {
-    bg: { about:'За нас', rooms:'Стаи', gallery:'Галерия', contact:'Контакти', book:'Резервирай стая' },
-    en: { about:'About', rooms:'Rooms', gallery:'Gallery', contact:'Contact', book:'Book a Room' },
-    es: { about:'Sobre nosotros', rooms:'Habitaciones', gallery:'Galería', contact:'Contacto', book:'Reservar' }
-  };')"]`).classList.add('active');
-    document.querySelectorAll('[data-i18n]').forEach(el => { if(t[lang][el.dataset.i18n]) el.textContent = t[lang][el.dataset.i18n]; });
-  }
 </script>
 
 <script>
