@@ -316,7 +316,7 @@
     gap: 7px !important;
     overflow: hidden !important;
   }
-  .octobookpax:hover { background: transparent !important; border-radius: 0 !important; }
+  .octobookpax:hover { background: #f7f4f0 !important; border-radius: 50px !important; }
 
   /* Submit */
   .octobooksubmit {
@@ -385,20 +385,6 @@
     background: rgba(0,0,0,0.06) !important;
   }
 
-  /* Pax number input — bigger, bold, fixed width so label is visible */
-  .octobookpax input[type="number"],
-  .octobookpax input[type="text"] {
-    font-size: 1.15rem !important;
-    font-weight: 700 !important;
-    color: var(--text) !important;
-    width: 40px !important;
-    flex-shrink: 0 !important;
-  }
-  /* Pax label — slightly bigger */
-  .octobookpax label {
-    font-size: 1rem !important;
-  }
-
   /* Kill Octorate forced min-heights */
   .octobook * { min-height: 0 !important; }
   .octobookthemeROUNDED .octobooksubmit > div > input { min-height: 0 !important; min-width: 0 !important; }
@@ -465,7 +451,13 @@
       border-radius: 0 !important; height: 52px !important; flex-direction: row !important;
     }
     .octobook-date:last-of-type { border-bottom: 1px solid #e8e2db !important; }
-    .octobookpax { border-bottom: 1px solid #e8e2db !important; height: 52px !important; flex-direction: row !important; }
+    .octobookpax { border-bottom: 1px solid #e8e2db !important; height: 52px !important; flex-direction: row !important; cursor: pointer !important; }
+    .octobookpax input[type="number"],
+    .octobookpax input[type="text"] {
+      font-size: 1.15rem !important; font-weight: 700 !important;
+      color: var(--text) !important; width: 40px !important; flex-shrink: 0 !important;
+    }
+    .octobookpax label { font-size: 1rem !important; }
     .octobook label { line-height: 52px !important; }
     .octobooksubmit { padding: 8px !important; }
     .octobooksubmit input,
@@ -592,12 +584,20 @@
     }
 
     // Click anywhere in a section → trigger its input
+    // Date sections: click() opens the datepicker
+    // Pax section: focus() opens the mobile keyboard (input.click() doesn't work on iOS)
     document.querySelectorAll('.octobook-date, .octobookpax').forEach(function(section) {
       section.style.cursor = 'pointer';
       section.addEventListener('click', function(e) {
-        if (e.target.tagName === 'INPUT') return; // already on input, skip
+        if (e.target.tagName === 'INPUT') return;
         var input = section.querySelector('input');
-        if (input) input.click();
+        if (!input) return;
+        if (section.classList.contains('octobookpax')) {
+          input.focus();
+          input.select();
+        } else {
+          input.click();
+        }
       });
     });
 
