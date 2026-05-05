@@ -82,7 +82,7 @@
     font-family: 'DM Sans', sans-serif; font-size: 0.72rem; letter-spacing: 0.18em;
     text-transform: uppercase; padding: 0.6rem 1.6rem; cursor: pointer;
     transition: all 0.25s; text-decoration: none; margin-left: 1.5rem;
-    border-radius: 20px; font-weight: 500; margin-top: 6px;
+    border-radius: 20px; font-weight: 500; margin-top: 14px;
     box-shadow: 0 0 18px rgba(255,63,164,0.55), 0 2px 8px rgba(255,63,164,0.3);
   }
   .nav-cta:hover {
@@ -159,13 +159,22 @@
   .divider { width: 40px; height: 1px; background: var(--gold); margin-bottom: 2rem; }
 
   .hero-phone {
-    display: inline-block; margin-top: 1.8rem;
-    font-family: 'DM Sans', sans-serif; font-size: 1rem; font-weight: 600;
-    color: rgba(255,255,255,0.9); text-decoration: none; letter-spacing: 0.06em;
-    border-bottom: 1px solid rgba(255,255,255,0.35); padding-bottom: 2px;
-    transition: color 0.2s, border-color 0.2s;
+    display: inline-flex; align-items: center; gap: 0.5rem; margin-top: 2rem;
+    font-family: 'DM Sans', sans-serif; font-size: 1.05rem; font-weight: 700;
+    color: #fff; text-decoration: none; letter-spacing: 0.08em;
+    text-shadow: 0 0 18px rgba(255,63,164,0.9), 0 0 40px rgba(255,63,164,0.5), 0 2px 8px rgba(0,0,0,0.4);
+    transition: text-shadow 0.25s;
   }
-  .hero-phone:hover { color: var(--neon); border-color: var(--neon); }
+  .hero-phone::before {
+    content: '';
+    display: inline-block; width: 8px; height: 8px; border-radius: 50%;
+    background: var(--neon);
+    box-shadow: 0 0 10px rgba(255,63,164,1), 0 0 20px rgba(255,63,164,0.6);
+    flex-shrink: 0;
+  }
+  .hero-phone:hover {
+    text-shadow: 0 0 24px rgba(255,63,164,1), 0 0 50px rgba(255,63,164,0.7), 0 2px 8px rgba(0,0,0,0.4);
+  }
   /* ABOUT */
   #about { display: grid; grid-template-columns: 1fr 1.6fr; gap: 4rem; align-items: start; background: var(--cream); }
   .about-text p { font-family: 'Cormorant Garamond', serif; font-size: 1.25rem; line-height: 1.85; color: var(--grey); margin-bottom: 1.5rem; }
