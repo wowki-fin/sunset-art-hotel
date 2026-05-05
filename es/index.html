@@ -144,12 +144,6 @@
     color: var(--neon); font-family: 'DM Sans', sans-serif; font-weight: 500;
     margin-bottom: 0.6rem;
   }
-  .season-phone {
-    display: block; margin-top: 0.6rem;
-    font-family: 'DM Sans', sans-serif; font-size: 0.78rem; font-weight: 600;
-    color: var(--text); text-decoration: none; letter-spacing: 0.04em;
-  }
-  .season-phone:hover { color: var(--neon); }
   .season-open-badge {
     display: block; font-family: 'DM Sans', sans-serif;
     font-size: 0.82rem; font-weight: 700;
@@ -164,6 +158,14 @@
   .section-title em { color: transparent; -webkit-text-stroke: 1px var(--neon); font-style: italic; font-family: 'Cormorant Garamond', serif; }
   .divider { width: 40px; height: 1px; background: var(--gold); margin-bottom: 2rem; }
 
+  .hero-phone {
+    display: inline-block; margin-top: 1.8rem;
+    font-family: 'DM Sans', sans-serif; font-size: 1rem; font-weight: 600;
+    color: rgba(255,255,255,0.9); text-decoration: none; letter-spacing: 0.06em;
+    border-bottom: 1px solid rgba(255,255,255,0.35); padding-bottom: 2px;
+    transition: color 0.2s, border-color 0.2s;
+  }
+  .hero-phone:hover { color: var(--neon); border-color: var(--neon); }
   /* ABOUT */
   #about { display: grid; grid-template-columns: 1fr 1.6fr; gap: 4rem; align-items: start; background: var(--cream); }
   .about-text p { font-family: 'Cormorant Garamond', serif; font-size: 1.25rem; line-height: 1.85; color: var(--grey); margin-bottom: 1.5rem; }
@@ -477,12 +479,13 @@
   <div class="hero-img"></div>
   <div class="hero-overlay"></div>
   <div class="season-banner">
-    <p class="season-year">Temporada 2026</p><span class="season-open-badge">Reservas Abiertas</span><a class="season-phone" href="tel:+35989684228">+359 89 684 2288</a>
+    <p class="season-year">Temporada 2026</p><span class="season-open-badge">Reservas Abiertas</span>
   </div>
   <div class="hero-content">
     <p class="hero-tag">Chernomorets · Mar Negro · Bulgaria</p>
     <h1 class="hero-title">SUNSET<span class="art">Art</span></h1>
     <p class="hero-sub">Donde el arte se encuentra con el mar.<br><em>Desconéctate para reconectarte.</em></p>
+  <a class="hero-phone" href="tel:+35989684228">+359 89 684 2288</a>
   </div>
 </section>
 
