@@ -144,12 +144,38 @@
   .divider { width: 40px; height: 1px; background: var(--gold); margin-bottom: 2rem; }
 
   /* ABOUT */
-  #about { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; background: var(--cream); }
+  #about { display: grid; grid-template-columns: 1fr 1.6fr; gap: 4rem; align-items: start; background: var(--cream); }
   .about-text p { font-family: 'Cormorant Garamond', serif; font-size: 1.25rem; line-height: 1.85; color: var(--grey); margin-bottom: 1.5rem; }
   .about-text p strong { color: var(--text); font-weight: 400; }
-  .about-img-grid { display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: auto auto; gap: 10px; }
-  .about-img-grid img { width: 100%; height: 220px; object-fit: cover; display: block; }
-  .about-img-grid img:first-child { grid-column: 1 / -1; height: 280px; }
+  /* ABOUT COLLAGE */
+  .about-collage {
+    columns: 3;
+    column-gap: 8px;
+    align-self: start;
+  }
+  .about-collage-item {
+    break-inside: avoid;
+    margin-bottom: 8px;
+    border-radius: 4px;
+    overflow: hidden;
+    box-shadow: 2px 5px 18px rgba(0,0,0,0.16), 0 1px 3px rgba(0,0,0,0.08);
+    cursor: zoom-in;
+    position: relative;
+    transition: box-shadow 0.3s, transform 0.3s cubic-bezier(.25,.46,.45,.94);
+  }
+  .about-collage-item img { width: 100%; display: block; object-fit: cover; transition: transform 0.35s ease; }
+  .about-collage-item:hover img { transform: scale(1.05); }
+  .about-collage-item:hover { box-shadow: 4px 10px 32px rgba(0,0,0,0.24); transform: rotate(0deg) scale(1.02); z-index: 5; }
+  .about-collage-item:nth-child(1)  { transform: rotate(-2deg); }
+  .about-collage-item:nth-child(2)  { transform: rotate(1.8deg); }
+  .about-collage-item:nth-child(3)  { transform: rotate(-1.2deg); }
+  .about-collage-item:nth-child(4)  { transform: rotate(2.2deg); }
+  .about-collage-item:nth-child(5)  { transform: rotate(-1.8deg); }
+  .about-collage-item:nth-child(6)  { transform: rotate(0.9deg); }
+  .about-collage-item:nth-child(7)  { transform: rotate(-2.4deg); }
+  .about-collage-item:nth-child(8)  { transform: rotate(1.5deg); }
+  .about-collage-item:nth-child(9)  { transform: rotate(-0.8deg); }
+  .about-collage-item:nth-child(10) { transform: rotate(2.8deg); }
 
   /* AMENITIES */
   #amenities { background: #dedad3; text-align: center; padding: 5rem 3rem; }
@@ -343,6 +369,7 @@
     #lang-switcher { display: none; }
     section { padding: 4rem 1.5rem; }
     #about, #contact { grid-template-columns: 1fr; gap: 2.5rem; }
+    .about-collage { columns: 2; }
     .rooms-header { flex-direction: column; align-items: flex-start; gap: 1rem; }
     .rooms-carousel-wrap { margin: 0 -1.5rem; }
     .rooms-grid { gap: 1rem; padding: 0 1.5rem 0.5rem; }
@@ -449,10 +476,17 @@
     <p>Located on the beachfront of beautiful Chernomorets, SUNSET ART creates the perfect atmosphere to enjoy nature in this amazing destination—so you can disconnect… to reconnect.</p>
     <p style="font-size:0.8rem; letter-spacing:0.1em; color: var(--gold); text-transform:uppercase; margin-top:1rem;">★ 4.7 · Breakfast included · Free parking · Beachfront</p>
   </div>
-  <div class="about-img-grid">
-    <img src="https://static.wixstatic.com/media/3008e1_c0f966f85d674ba0ad7ddd430642a8c5~mv2.jpg" alt="Hotel facade">
-    <img src="https://static.wixstatic.com/media/3008e1_54130dc5103c4826aca3f8381a11af83~mv2.jpeg" alt="Room detail">
-    <img src="https://static.wixstatic.com/media/3008e1_9f742201375c400f84a06bf2079ad85e~mv2.jpeg" alt="Rooftop terrace">
+  <div class="about-collage">
+    <div class="about-collage-item"><img src="../images/about/about-1.jpg" alt="Rooftop terrace sea view" loading="lazy"></div>
+    <div class="about-collage-item"><img src="../images/about/about-2.jpg" alt="Rooftop sea view" loading="lazy"></div>
+    <div class="about-collage-item"><img src="../images/about/about-3.jpg" alt="Rooftop sunset" loading="lazy"></div>
+    <div class="about-collage-item"><img src="../images/about/about-4.jpg" alt="Evening terrace" loading="lazy"></div>
+    <div class="about-collage-item"><img src="../images/about/about-5.jpg" alt="Nature trail" loading="lazy"></div>
+    <div class="about-collage-item"><img src="../images/about/about-6.jpg" alt="Coastal walk" loading="lazy"></div>
+    <div class="about-collage-item"><img src="../images/about/about-7.jpg" alt="Harbor view" loading="lazy"></div>
+    <div class="about-collage-item"><img src="../images/about/about-8.jpg" alt="Black Sea coast" loading="lazy"></div>
+    <div class="about-collage-item"><img src="../images/about/about-9.jpg" alt="Sunset Art spirit" loading="lazy"></div>
+    <div class="about-collage-item"><img src="../images/about/about-10.jpg" alt="Art & soul" loading="lazy"></div>
   </div>
 </section>
 
@@ -884,7 +918,7 @@
     document.body.appendChild(lb);
     var lbImg = lb.querySelector('img');
 
-    document.querySelectorAll('.gallery-item').forEach(function(item) {
+    document.querySelectorAll('.gallery-item, .about-collage-item').forEach(function(item) {
       item.addEventListener('click', function() {
         lbImg.src = item.querySelector('img').src;
         lbImg.alt = item.querySelector('img').alt;
