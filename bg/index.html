@@ -294,12 +294,24 @@
   .mobile-cta-mob:hover { background: var(--neon); color: var(--white); }
   .mobile-lang { display: flex; justify-content: center; align-items: center; padding-top: 0.2rem; }
 
+  /* NAV BOOK MOB */
+  .nav-book-mob { display: none; }
+
   /* MOBILE */
   @media (max-width: 768px) {
     nav { padding: 1rem 1.5rem; }
     .nav-links { display: none; }
     .nav-cta { display: none; }
     .hamburger-btn { display: flex; }
+    .nav-book-mob {
+      display: inline-flex; align-items: center;
+      background: var(--neon); color: #fff;
+      font-family: 'DM Sans', sans-serif; font-size: 0.62rem;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      text-decoration: none; padding: 0.5rem 1rem;
+      border-radius: 20px; white-space: nowrap; font-weight: 500;
+      box-shadow: 0 0 16px rgba(255,63,164,0.55), 0 2px 8px rgba(255,63,164,0.3);
+    }
     #lang-switcher { display: none; }
     section { padding: 4rem 1.5rem; }
     #about, #contact { grid-template-columns: 1fr; gap: 2.5rem; }
@@ -343,6 +355,7 @@
     <li><a href="#contact" data-i18n="contact">Контакти</a></li>
   </ul>
   <a class="nav-cta" href="../reservas/" data-i18n="book">Резервирай стая</a>
+  <a class="nav-book-mob" href="../reservas/">Резервирай</a>
   <button class="hamburger-btn" id="hamburger-btn" aria-label="Меню">
     <span></span><span></span><span></span>
   </button>
@@ -358,7 +371,6 @@
     <li><a href="#gallery">Галерия</a></li>
     <li><a href="#contact">Контакти</a></li>
   </ul>
-  <a class="mobile-cta-mob" href="../reservas/">Резервирай стая</a>
   <div class="mobile-lang">
     <span class="lang-btn active">BG</span>
     <span class="lang-sep">|</span>

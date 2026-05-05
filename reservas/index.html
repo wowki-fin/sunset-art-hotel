@@ -330,11 +330,19 @@
     min-height: 0 !important;
   }
 
-  /* Submit button — circular neon */
+  /* Submit button — circular neon — broad selectors to cover all Octorate DOM structures */
   .octobooksubmit input[type="submit"],
+  .octobooksubmit input[type="button"],
+  .octobooksubmit input[type="image"],
+  .octobooksubmit button,
   .octobooksubmit div input,
-  .octobooksubmit > div > input {
-    background: #ff3fa4 !important;
+  .octobooksubmit > div > input,
+  .octobooksubmit > input {
+    background-color: #ff3fa4 !important;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='11' cy='11' r='8'/%3E%3Cline x1='21' y1='21' x2='16.65' y2='16.65'/%3E%3C%2Fsvg%3E") !important;
+    background-repeat: no-repeat !important;
+    background-position: center !important;
+    background-size: 20px 20px !important;
     border: none !important;
     border-radius: 50% !important;
     width: 34px !important;
@@ -349,16 +357,17 @@
     padding: 0 !important;
     margin: 0 !important;
     line-height: 34px !important;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='11' cy='11' r='8'/%3E%3Cline x1='21' y1='21' x2='16.65' y2='16.65'/%3E%3C/svg%3E") !important;
-    background-repeat: no-repeat !important;
-    background-position: center !important;
     box-shadow: 0 4px 14px rgba(255,63,164,0.45) !important;
     transition: transform 0.2s, box-shadow 0.2s !important;
     -webkit-appearance: none !important;
     appearance: none !important;
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    flex-shrink: 0 !important;
   }
-  .octobooksubmit input[type="submit"]:hover,
-  .octobooksubmit div input:hover {
+  .octobooksubmit input:hover,
+  .octobooksubmit button:hover {
     transform: scale(1.06) !important;
     box-shadow: 0 6px 20px rgba(255,63,164,0.6) !important;
   }
@@ -445,10 +454,12 @@
     .octobookpax { border-bottom: 1px solid #e8e2db !important; height: 52px !important; flex-direction: row !important; }
     .octobook label { line-height: 52px !important; }
     .octobooksubmit { padding: 8px !important; }
-    .octobooksubmit input[type="submit"],
-    .octobooksubmit div input {
+    .octobooksubmit input,
+    .octobooksubmit button,
+    .octobooksubmit > div > input {
       width: 100% !important; max-width: 100% !important;
       border-radius: 12px !important; height: 48px !important;
+      background-size: 24px 24px !important;
     }
   }
 </style>
@@ -536,6 +547,35 @@
   function initOctoWidget() {
     const form = document.querySelector('.octobook form');
     if (!form) { setTimeout(initOctoWidget, 250); return; }
+
+    // Force submit button visible — covers all possible Octorate DOM structures
+    var svgIcon = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='11' cy='11' r='8'/%3E%3Cline x1='21' y1='21' x2='16.65' y2='16.65'/%3E%3C%2Fsvg%3E";
+    var submitEl = document.querySelector('.octobooksubmit input') ||
+                   document.querySelector('.octobooksubmit button') ||
+                   document.querySelector('.octobooksubmit > *');
+    if (submitEl) {
+      submitEl.style.setProperty('display', 'block', 'important');
+      submitEl.style.setProperty('visibility', 'visible', 'important');
+      submitEl.style.setProperty('opacity', '1', 'important');
+      submitEl.style.setProperty('background-color', '#ff3fa4', 'important');
+      submitEl.style.setProperty('background-image', 'url("' + svgIcon + '")', 'important');
+      submitEl.style.setProperty('background-repeat', 'no-repeat', 'important');
+      submitEl.style.setProperty('background-position', 'center', 'important');
+      submitEl.style.setProperty('background-size', '20px 20px', 'important');
+      submitEl.style.setProperty('border', 'none', 'important');
+      submitEl.style.setProperty('border-radius', '50%', 'important');
+      submitEl.style.setProperty('width', '34px', 'important');
+      submitEl.style.setProperty('height', '34px', 'important');
+      submitEl.style.setProperty('min-width', '34px', 'important');
+      submitEl.style.setProperty('min-height', '34px', 'important');
+      submitEl.style.setProperty('max-width', '34px', 'important');
+      submitEl.style.setProperty('max-height', '34px', 'important');
+      submitEl.style.setProperty('cursor', 'pointer', 'important');
+      submitEl.style.setProperty('padding', '0', 'important');
+      submitEl.style.setProperty('font-size', '0', 'important');
+      submitEl.style.setProperty('box-shadow', '0 4px 14px rgba(255,63,164,0.45)', 'important');
+      submitEl.style.setProperty('-webkit-appearance', 'none', 'important');
+    }
 
     // Click anywhere in a section → trigger its input
     document.querySelectorAll('.octobook-date, .octobookpax').forEach(function(section) {
