@@ -193,6 +193,24 @@
   .room-features { list-style: none; display: flex; flex-direction: column; gap: 0.4rem; margin-bottom: 1.4rem; }
   .room-features li { font-size: 0.8rem; color: var(--grey); display: flex; align-items: center; gap: 0.5rem; }
   .room-features li::before { content: '—'; color: var(--neon); font-size: 0.6rem; }
+
+  /* Mini photo gallery for Family Room */
+  .room-mini-gallery { position: relative; overflow: hidden; height: 280px; }
+  .mini-slides { display: flex; height: 100%; transition: transform 0.4s ease; }
+  .mini-slides img { flex: 0 0 100%; width: 100%; height: 100%; object-fit: cover; display: block; }
+  .mini-nav-btn {
+    position: absolute; top: 50%; transform: translateY(-50%);
+    background: rgba(0,0,0,0.35); border: none; color: #fff;
+    width: 28px; height: 28px; border-radius: 50%; cursor: pointer;
+    font-size: 1rem; display: flex; align-items: center; justify-content: center;
+    transition: background 0.2s; z-index: 2; line-height: 1; padding: 0;
+  }
+  .mini-nav-btn:hover { background: rgba(255,63,164,0.7); }
+  .mini-nav-btn.mini-prev { left: 6px; }
+  .mini-nav-btn.mini-next { right: 6px; }
+  .mini-dots { position: absolute; bottom: 7px; left: 50%; transform: translateX(-50%); display: flex; gap: 5px; z-index: 2; }
+  .mini-dot { width: 6px; height: 6px; border-radius: 50%; background: rgba(255,255,255,0.5); transition: background 0.2s; cursor: pointer; }
+  .mini-dot.active { background: #fff; }
   /* BOOKING */
   #booking { background: #2a3f6e; padding: 4rem 3rem; text-align: center; }
 
@@ -496,7 +514,7 @@
   <div class="rooms-carousel-wrap">
     <div class="rooms-grid" id="rooms-grid">
     <div class="room-card">
-      <div class="room-img room-img-ph"></div>
+      <div class="room-img"><img src="../images/rooms/room-double.jpg" alt="Double Room" loading="lazy"></div>
       <div class="room-info">
         <p class="room-detail">Double · Standard</p>
         <h3 class="room-name">Double Room</h3>
@@ -507,7 +525,7 @@
       </div>
     </div>
     <div class="room-card">
-      <div class="room-img room-img-ph"></div>
+      <div class="room-img"><img src="../images/rooms/room-double-ground.jpg" alt="Double Room Ground Floor" loading="lazy"></div>
       <div class="room-info">
         <p class="room-detail">Double · Ground floor · No balcony</p>
         <h3 class="room-name">Double Room Ground Floor (no Balcony)</h3>
@@ -518,7 +536,7 @@
       </div>
     </div>
     <div class="room-card">
-      <div class="room-img"><img src="https://static.wixstatic.com/media/3008e1_1c5a7f74cae64518a49a4fe4e1a06c6b~mv2.jpg" alt="Double Room Forest View" loading="lazy"></div>
+      <div class="room-img"><img src="../images/rooms/room-double-forest.jpg" alt="Double Room Forest View" loading="lazy"></div>
       <div class="room-info">
         <p class="room-detail">Double · Balcony · Forest view</p>
         <h3 class="room-name">Double Room with Balcony and Forest View</h3>
@@ -529,7 +547,7 @@
       </div>
     </div>
     <div class="room-card">
-      <div class="room-img"><img src="https://static.wixstatic.com/media/3008e1_67bfb44f99b648418fcbe177d85b8a5c~mv2.jpg" alt="Double Room Sea View" loading="lazy"></div>
+      <div class="room-img"><img src="../images/rooms/room-double-sea.jpg" alt="Double Room Sea View" loading="lazy"></div>
       <div class="room-info">
         <p class="room-detail">Double · Balcony · Sea view</p>
         <h3 class="room-name">Double Room with Balcony and Sea View</h3>
@@ -540,7 +558,7 @@
       </div>
     </div>
     <div class="room-card">
-      <div class="room-img room-img-ph"></div>
+      <div class="room-img"><img src="../images/rooms/room-double-sea-ext.jpg" alt="Double Room Sea View External Toilet" loading="lazy"></div>
       <div class="room-info">
         <p class="room-detail">Double · Sea view · External toilet</p>
         <h3 class="room-name">Double Room with Sea View &amp; External Toilet</h3>
@@ -551,7 +569,20 @@
       </div>
     </div>
     <div class="room-card">
-      <div class="room-img room-img-ph"></div>
+      <div class="room-img room-mini-gallery">
+      <div class="mini-slides">
+        <img src="../images/rooms/room-family-1.jpg" alt="Family Room" loading="lazy">
+        <img src="../images/rooms/room-family-2.jpg" alt="Family Room" loading="lazy">
+        <img src="../images/rooms/room-family-3.jpg" alt="Family Room" loading="lazy">
+      </div>
+      <button class="mini-nav-btn mini-prev">&#8249;</button>
+      <button class="mini-nav-btn mini-next">&#8250;</button>
+      <div class="mini-dots">
+        <span class="mini-dot active"></span>
+        <span class="mini-dot"></span>
+        <span class="mini-dot"></span>
+      </div>
+    </div>
       <div class="room-info">
         <p class="room-detail">Family · 2 bedrooms · Sea view</p>
         <h3 class="room-name">Family Room — Two Bedrooms &amp; Sea View</h3>
@@ -562,7 +593,7 @@
       </div>
     </div>
     <div class="room-card">
-      <div class="room-img room-img-ph"></div>
+      <div class="room-img"><img src="../images/rooms/room-jr-ground.jpg" alt="Jr Double Room Ground Floor" loading="lazy"></div>
       <div class="room-info">
         <p class="room-detail">Junior Double · Ground floor</p>
         <h3 class="room-name">Jr Double Room — Ground Floor (no Balcony)</h3>
@@ -573,7 +604,7 @@
       </div>
     </div>
     <div class="room-card">
-      <div class="room-img room-img-ph"></div>
+      <div class="room-img"><img src="../images/rooms/room-jr-sea.jpg" alt="Jr Double Room Sea View" loading="lazy"></div>
       <div class="room-info">
         <p class="room-detail">Junior Double · Sea view</p>
         <h3 class="room-name">Jr Double Room with Sea View</h3>
@@ -861,6 +892,27 @@
     function cardW() { var c = grid.querySelector('.room-card'); return c ? c.offsetWidth + 2 : 300; }
     prev.addEventListener('click', function() { grid.scrollBy({ left: -cardW(), behavior: 'smooth' }); });
     next.addEventListener('click', function() { grid.scrollBy({ left: cardW(), behavior: 'smooth' }); });
+  })();
+
+  // Family Room mini-gallery
+  (function() {
+    var galleries = document.querySelectorAll('.room-mini-gallery');
+    galleries.forEach(function(gallery) {
+      var slides = gallery.querySelector('.mini-slides');
+      var dots = gallery.querySelectorAll('.mini-dot');
+      var prevBtn = gallery.querySelector('.mini-prev');
+      var nextBtn = gallery.querySelector('.mini-next');
+      var total = gallery.querySelectorAll('.mini-slides img').length;
+      var idx = 0;
+      function goTo(n) {
+        idx = (n + total) % total;
+        slides.style.transform = 'translateX(-' + (idx * 100) + '%)';
+        dots.forEach(function(d, i) { d.classList.toggle('active', i === idx); });
+      }
+      if (prevBtn) prevBtn.addEventListener('click', function(e) { e.stopPropagation(); goTo(idx - 1); });
+      if (nextBtn) nextBtn.addEventListener('click', function(e) { e.stopPropagation(); goTo(idx + 1); });
+      dots.forEach(function(d, i) { d.addEventListener('click', function() { goTo(i); }); });
+    });
   })();
 </script>
 </body>
