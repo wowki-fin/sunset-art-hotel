@@ -161,21 +161,38 @@
 
   /* ROOMS */
   #rooms { background: var(--cream); }
-  .rooms-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 3rem; }
-  .rooms-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: rgba(28,26,24,0.1); }
-  .room-card { background: var(--cream); overflow: hidden; cursor: pointer; }
-  .room-card:hover .room-img { transform: scale(1.04); }
-  .room-img { height: 300px; background: var(--mid); overflow: hidden; transition: transform 0.5s ease; }
-  .room-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
-  .room-info { padding: 1.8rem; }
-  .room-name { font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; font-weight: 400; margin-bottom: 0.5rem; line-height: 1.3; color: var(--text); }
+  .rooms-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 2.5rem; }
+  .rooms-carousel-wrap { overflow: hidden; }
+  .rooms-grid {
+    display: flex; gap: 2px;
+    overflow-x: auto; scroll-snap-type: x mandatory;
+    scrollbar-width: none; -webkit-overflow-scrolling: touch;
+  }
+  .rooms-grid::-webkit-scrollbar { display: none; }
+  .room-card {
+    flex: 0 0 calc(33.333% - 2px); min-width: 260px;
+    background: var(--cream); overflow: hidden; cursor: pointer;
+    scroll-snap-align: start;
+  }
+  .room-card:hover .room-img img { transform: scale(1.04); }
+  .rooms-nav { display: flex; gap: 0.5rem; align-items: center; }
+  .rooms-arrow {
+    background: transparent; border: 1px solid rgba(28,26,24,0.2);
+    width: 36px; height: 36px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer; font-size: 1.1rem; color: var(--text);
+    transition: all 0.2s; line-height: 1; font-family: sans-serif;
+  }
+  .rooms-arrow:hover { border-color: var(--neon); color: var(--neon); }
+  .room-img { height: 280px; background: var(--mid); overflow: hidden; transition: transform 0.5s ease; }
+  .room-img img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.5s ease; }
+  .room-img-ph { background: linear-gradient(135deg, #d4cfc8 0%, #c5c0b9 100%); }
+  .room-info { padding: 1.6rem; }
+  .room-name { font-family: 'Cormorant Garamond', serif; font-size: 1.25rem; font-weight: 400; margin-bottom: 0.5rem; line-height: 1.3; color: var(--text); }
   .room-detail { font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold); margin-bottom: 1.2rem; }
-  .room-features { list-style: none; display: flex; flex-direction: column; gap: 0.4rem; margin-bottom: 1.5rem; }
+  .room-features { list-style: none; display: flex; flex-direction: column; gap: 0.4rem; margin-bottom: 1.4rem; }
   .room-features li { font-size: 0.8rem; color: var(--grey); display: flex; align-items: center; gap: 0.5rem; }
   .room-features li::before { content: '—'; color: var(--neon); font-size: 0.6rem; }
-  .btn-outline { display: inline-block; border: 1px solid rgba(28,26,24,0.2); color: var(--text); font-family: 'DM Sans', sans-serif; font-size: 0.68rem; letter-spacing: 0.18em; text-transform: uppercase; padding: 0.65rem 1.4rem; text-decoration: none; transition: border-color 0.2s, color 0.2s; }
-  .btn-outline:hover { border-color: var(--neon); color: var(--neon); }
-
   /* BOOKING */
   #booking { background: #2a3f6e; padding: 4rem 3rem; text-align: center; }
 
@@ -308,7 +325,11 @@
     #lang-switcher { display: none; }
     section { padding: 4rem 1.5rem; }
     #about, #contact { grid-template-columns: 1fr; gap: 2.5rem; }
-    .rooms-grid { grid-template-columns: 1fr; }
+    .rooms-header { flex-direction: column; align-items: flex-start; gap: 1rem; }
+    .rooms-carousel-wrap { margin: 0 -1.5rem; }
+    .rooms-grid { gap: 1rem; padding: 0 1.5rem 0.5rem; }
+    .room-card { flex: 0 0 82vw; min-width: 0; border: 1px solid rgba(28,26,24,0.08); }
+    .rooms-nav { display: none; }
     .say-info { grid-template-columns: 1fr; }
     .say-main-grid { grid-template-columns: 1fr !important; height: auto !important; max-height: none !important; }
     .say-left-col { height: 360px; }
@@ -452,47 +473,124 @@
       <p class="section-label">Rooms</p>
       <h2 class="section-title">Sleep in<br>a <em>painting</em></h2>
     </div>
-    <a class="btn-outline" href="#booking">Check availability</a>
+    <div style="display:flex;align-items:center;gap:1rem;flex-wrap:wrap;">
+      <div class="rooms-nav">
+        <button class="rooms-arrow" id="rooms-prev" aria-label="Previous">&#8592;</button>
+        <button class="rooms-arrow" id="rooms-next" aria-label="Next">&#8594;</button>
+      </div>
+      <a class="btn-outline" href="../reservas/">Check availability</a>
+    </div>
   </div>
-  <div class="rooms-grid">
+  <div class="rooms-carousel-wrap">
+    <div class="rooms-grid" id="rooms-grid">
     <div class="room-card">
-      <div class="room-img"><img src="https://static.wixstatic.com/media/3008e1_67bfb44f99b648418fcbe177d85b8a5c~mv2.jpg" alt="Double room sea view"></div>
+      <div class="room-img room-img-ph"></div>
       <div class="room-info">
-        <p class="room-detail">Double · Sea view</p>
-        <h3 class="room-name">Double Room with Balcony & Sea View</h3>
+        <p class="room-detail">Double · Standard</p>
+        <h3 class="room-name">Double Room</h3>
         <ul class="room-features">
-          <li>Private balcony facing the Black Sea</li>
-          <li>King size bed · Air conditioning</li>
+          <li>Air conditioning</li>
           <li>Breakfast included</li>
         </ul>
-        <a class="btn-outline" href="#booking">Book this room</a>
+        <a class="btn-outline" href="../reservas/">Book this room</a>
       </div>
     </div>
     <div class="room-card">
-      <div class="room-img"><img src="https://static.wixstatic.com/media/3008e1_1c5a7f74cae64518a49a4fe4e1a06c6b~mv2.jpg" alt="Double room forest view"></div>
+      <div class="room-img room-img-ph"></div>
       <div class="room-info">
-        <p class="room-detail">Double · Forest view</p>
-        <h3 class="room-name">Double Room with Balcony & Forest View</h3>
+        <p class="room-detail">Double · Ground floor · No balcony</p>
+        <h3 class="room-name">Double Room Ground Floor (no Balcony)</h3>
         <ul class="room-features">
-          <li>Private balcony into the green</li>
-          <li>King size bed · Air conditioning</li>
+          <li>Air conditioning</li>
           <li>Breakfast included</li>
         </ul>
-        <a class="btn-outline" href="#booking">Book this room</a>
+        <a class="btn-outline" href="../reservas/">Book this room</a>
       </div>
     </div>
     <div class="room-card">
-      <div class="room-img"><img src="https://static.wixstatic.com/media/3008e1_b814d12e4cc0480a951814ac55b8ccee~mv2.jpeg" alt="Double room terrace"></div>
+      <div class="room-img"><img src="https://static.wixstatic.com/media/3008e1_1c5a7f74cae64518a49a4fe4e1a06c6b~mv2.jpg" alt="Double Room Forest View" loading="lazy"></div>
       <div class="room-info">
-        <p class="room-detail">Double · Private terrace</p>
-        <h3 class="room-name">Double Room with Forest View & Terrace</h3>
+        <p class="room-detail">Double · Balcony · Forest view</p>
+        <h3 class="room-name">Double Room with Balcony and Forest View</h3>
         <ul class="room-features">
-          <li>Beautiful private terrace</li>
-          <li>King size bed · Air conditioning</li>
+          <li>Air conditioning</li>
           <li>Breakfast included</li>
         </ul>
-        <a class="btn-outline" href="#booking">Book this room</a>
+        <a class="btn-outline" href="../reservas/">Book this room</a>
       </div>
+    </div>
+    <div class="room-card">
+      <div class="room-img"><img src="https://static.wixstatic.com/media/3008e1_67bfb44f99b648418fcbe177d85b8a5c~mv2.jpg" alt="Double Room Sea View" loading="lazy"></div>
+      <div class="room-info">
+        <p class="room-detail">Double · Balcony · Sea view</p>
+        <h3 class="room-name">Double Room with Balcony and Sea View</h3>
+        <ul class="room-features">
+          <li>Air conditioning</li>
+          <li>Breakfast included</li>
+        </ul>
+        <a class="btn-outline" href="../reservas/">Book this room</a>
+      </div>
+    </div>
+    <div class="room-card">
+      <div class="room-img room-img-ph"></div>
+      <div class="room-info">
+        <p class="room-detail">Double · Sea view · External toilet</p>
+        <h3 class="room-name">Double Room with Sea View &amp; External Toilet</h3>
+        <ul class="room-features">
+          <li>Air conditioning</li>
+          <li>Breakfast included</li>
+        </ul>
+        <a class="btn-outline" href="../reservas/">Book this room</a>
+      </div>
+    </div>
+    <div class="room-card">
+      <div class="room-img room-img-ph"></div>
+      <div class="room-info">
+        <p class="room-detail">Family · 2 bedrooms · Sea view</p>
+        <h3 class="room-name">Family Room — Two Bedrooms &amp; Sea View</h3>
+        <ul class="room-features">
+          <li>Air conditioning</li>
+          <li>Breakfast included</li>
+        </ul>
+        <a class="btn-outline" href="../reservas/">Book this room</a>
+      </div>
+    </div>
+    <div class="room-card">
+      <div class="room-img room-img-ph"></div>
+      <div class="room-info">
+        <p class="room-detail">Junior Double · Ground floor</p>
+        <h3 class="room-name">Jr Double Room — Ground Floor (no Balcony)</h3>
+        <ul class="room-features">
+          <li>Air conditioning</li>
+          <li>Breakfast included</li>
+        </ul>
+        <a class="btn-outline" href="../reservas/">Book this room</a>
+      </div>
+    </div>
+    <div class="room-card">
+      <div class="room-img room-img-ph"></div>
+      <div class="room-info">
+        <p class="room-detail">Junior Double · Sea view</p>
+        <h3 class="room-name">Jr Double Room with Sea View</h3>
+        <ul class="room-features">
+          <li>Air conditioning</li>
+          <li>Breakfast included</li>
+        </ul>
+        <a class="btn-outline" href="../reservas/">Book this room</a>
+      </div>
+    </div>
+    <div class="room-card">
+      <div class="room-img"><img src="https://static.wixstatic.com/media/3008e1_b814d12e4cc0480a951814ac55b8ccee~mv2.jpeg" alt="Triple Room Big Terrace" loading="lazy"></div>
+      <div class="room-info">
+        <p class="room-detail">Triple · Big terrace</p>
+        <h3 class="room-name">Triple Room with Beautiful Big Terrace</h3>
+        <ul class="room-features">
+          <li>Air conditioning</li>
+          <li>Breakfast included</li>
+        </ul>
+        <a class="btn-outline" href="../reservas/">Book this room</a>
+      </div>
+    </div>
     </div>
   </div>
 </section>
@@ -750,6 +848,18 @@
 
   // FORCE SCROLL TO TOP — fix browser scroll restoration on cached pages
   requestAnimationFrame(function() { window.scrollTo(0, 0); });
+</script>
+<script>
+  // Rooms carousel arrows
+  (function() {
+    var grid = document.getElementById('rooms-grid');
+    var prev = document.getElementById('rooms-prev');
+    var next = document.getElementById('rooms-next');
+    if (!grid || !prev || !next) return;
+    function cardW() { var c = grid.querySelector('.room-card'); return c ? c.offsetWidth + 2 : 300; }
+    prev.addEventListener('click', function() { grid.scrollBy({ left: -cardW(), behavior: 'smooth' }); });
+    next.addEventListener('click', function() { grid.scrollBy({ left: cardW(), behavior: 'smooth' }); });
+  })();
 </script>
 </body>
 </html>
