@@ -59,13 +59,6 @@
   }
   .nav-links a:hover { opacity: 1; }
   .nav-right { display: flex; align-items: center; gap: 1.5rem; }
-  .nav-back {
-    background: transparent; border: 1px solid var(--neon); color: var(--neon);
-    font-family: 'DM Sans', sans-serif; font-size: 0.72rem; letter-spacing: 0.18em;
-    text-transform: uppercase; padding: 0.6rem 1.4rem;
-    transition: all 0.25s; text-decoration: none;
-  }
-  .nav-back:hover { background: var(--neon); color: var(--white); }
 
   /* HERO SECTION */
   .booking-hero {
@@ -136,18 +129,25 @@
     height: 44px;
   }
   .search-back-btn {
-    background: transparent;
-    border: 1px solid var(--neon);
-    color: var(--neon);
+    background: var(--neon);
+    border: none;
+    color: #fff;
     font-family: 'DM Sans', sans-serif;
     font-size: 0.72rem;
-    letter-spacing: 0.18em;
+    font-weight: 500;
+    letter-spacing: 0.14em;
     text-transform: uppercase;
-    padding: 0.45rem 1.2rem;
+    padding: 0.5rem 1.4rem;
+    border-radius: 20px;
     cursor: pointer;
-    transition: all 0.2s;
+    transition: box-shadow 0.2s, transform 0.2s;
+    box-shadow: 0 0 14px rgba(255,63,164,0.5), 0 2px 8px rgba(255,63,164,0.3);
+    white-space: nowrap;
   }
-  .search-back-btn:hover { background: var(--neon); color: #fff; }
+  .search-back-btn:hover {
+    box-shadow: 0 0 22px rgba(255,63,164,0.7), 0 4px 12px rgba(255,63,164,0.4);
+    transform: scale(1.03);
+  }
   .search-back-summary {
     font-family: 'DM Sans', sans-serif;
     font-size: 1rem;
@@ -223,11 +223,13 @@
   @media (max-width: 768px) {
     nav { padding: 0.8rem 1.5rem; }
     .nav-links { display: none; }
-    .nav-back { font-size: 0.65rem; padding: 0.5rem 0.9rem; }
+    .nav-right { display: none; }
     .hamburger-btn { display: flex; }
     .booking-hero { padding: 3rem 1.5rem 3.5rem; }
     footer { flex-direction: column; gap: 1.2rem; text-align: center; }
     .search-pill-wrap { padding: 0 0.5rem; }
+    .search-back-bar { padding: 0.5rem 1rem; gap: 1rem; }
+    .search-back-summary { font-size: 0.82rem; }
   }
 
   /* =============================================
@@ -511,7 +513,6 @@
     <li><a href="../en/#contact">Contact</a></li>
   </ul>
   <div class="nav-right">
-    <a class="nav-back" href="../en/">← Back</a>
     <div class="nav-lang">
       <a class="lang-btn" href="../bg/">BG</a>
       <span class="lang-sep">|</span>
