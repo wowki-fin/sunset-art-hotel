@@ -1067,31 +1067,51 @@
       var logoInner = document.querySelector('.say-logo-inner');
       if (!leftCol || !tacosWrap || !logoOuter) return;
 
+      // The bg image is first child — must be absolute so it doesn't block flex
+      var bgImg = leftCol.querySelector('img');
+      var bgOverlay = leftCol.querySelector('div[style*="inset:0"]');
+
       if (window.innerWidth <= 900) {
+        // Fix bg image: make it a positioned backdrop
+        if (bgImg) {
+          bgImg.style.position = 'absolute';
+          bgImg.style.inset    = '0';
+          bgImg.style.width    = '100%';
+          bgImg.style.height   = '100%';
+        }
+        if (bgOverlay) bgOverlay.style.position = 'absolute';
+
+        // Flex column container
         leftCol.style.display        = 'flex';
         leftCol.style.flexDirection  = 'column';
         leftCol.style.alignItems     = 'center';
         leftCol.style.justifyContent = 'center';
-        leftCol.style.gap            = '1.4rem';
+        leftCol.style.gap            = '1.2rem';
         leftCol.style.height         = '420px';
 
+        // Logo first, centered
         logoOuter.style.position = 'relative';
         logoOuter.style.bottom   = 'auto';
         logoOuter.style.left     = 'auto';
+        logoOuter.style.zIndex   = '2';
         logoOuter.style.order    = '1';
         if (logoInner) {
           logoInner.style.width  = '150px';
           logoInner.style.height = '150px';
         }
 
+        // Tacos below logo
         tacosWrap.style.position  = 'relative';
         tacosWrap.style.top       = 'auto';
         tacosWrap.style.left      = 'auto';
         tacosWrap.style.transform = 'none';
+        tacosWrap.style.zIndex    = '2';
         tacosWrap.style.order     = '2';
-        tacosWrap.style.width     = '92%';
+        tacosWrap.style.width     = '90%';
+
       } else {
-        // Restore desktop inline styles
+        // Restore desktop
+        if (bgImg) { bgImg.style.position = ''; bgImg.style.inset = ''; }
         leftCol.style.display = '';
         leftCol.style.flexDirection = '';
         leftCol.style.alignItems = '';
@@ -1103,16 +1123,15 @@
         logoOuter.style.bottom   = '2rem';
         logoOuter.style.left     = '2rem';
         logoOuter.style.order    = '';
-        if (logoInner) {
-          logoInner.style.width  = '190px';
-          logoInner.style.height = '190px';
-        }
+        logoOuter.style.zIndex   = '';
+        if (logoInner) { logoInner.style.width = '190px'; logoInner.style.height = '190px'; }
 
         tacosWrap.style.position  = 'absolute';
         tacosWrap.style.top       = '50%';
         tacosWrap.style.left      = '50%';
         tacosWrap.style.transform = 'translate(-50%,-50%)';
         tacosWrap.style.order     = '';
+        tacosWrap.style.zIndex    = '';
         tacosWrap.style.width     = '100%';
       }
     }
