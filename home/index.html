@@ -327,6 +327,8 @@
     .say-logo-inner { width: 140px !important; height: 140px !important; }
     .say-tacos-wrap { position: relative !important; top: auto !important; left: auto !important; transform: none !important; width: 90% !important; order: 2 !important; }
   }
+  .contact-map { margin-top: 2rem; }
+  @media (max-width: 768px) { .contact-map iframe { height: 180px; } }
   /* CONTACT */
   #contact { background: #dedad3; display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: start; }
   .contact-info p { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; color: var(--grey); line-height: 1.8; margin-bottom: 2rem; }
@@ -928,10 +930,7 @@
 
 <!-- GALLERY -->
 <section id="gallery">
-  <div class="gallery-header">
-    <p class="section-label">Gallery</p>
-    <h2 class="section-title">The <em>place</em></h2>
-  </div>
+
   <div class="gallery-strip">
     <div class="gallery-item"><img src="https://static.wixstatic.com/media/3008e1_9f742201375c400f84a06bf2079ad85e~mv2.jpeg" alt="Terrace"></div>
     <div class="gallery-item"><img src="https://static.wixstatic.com/media/3008e1_67bfb44f99b648418fcbe177d85b8a5c~mv2.jpg" alt="Room"></div>
@@ -958,14 +957,22 @@
         <a href="https://www.facebook.com" target="_blank" class="btn-outline" style="padding:0.5rem 1rem; font-size:0.65rem;">Facebook</a>
       </div>
     </div>
+    <div class="contact-map">
+      <p class="label" style="margin-bottom:0.6rem;">We are here</p>
+      <iframe src="https://maps.google.com/maps?q=ul.+Cherno+More+1,+Chernomorets,+Bulgaria&output=embed&z=16" width="100%" height="220" style="border:0; border-radius:8px; display:block;" allowfullscreen loading="lazy"></iframe>
+    </div>
   </div>
   <div>
     <p class="section-label">Send a message</p>
-    <div class="form-row"><input type="text" placeholder="Your name"></div>
-    <div class="form-row"><input type="email" placeholder="Email"></div>
-    <div class="form-row"><input type="text" placeholder="Subject"></div>
-    <div class="form-row"><textarea placeholder="Message"></textarea></div>
-    <button class="btn-neon">Send →</button>
+    <div id="contact-success" style="display:none; background:var(--neon); color:#fff; padding:1rem 1.4rem; border-radius:8px; margin-bottom:1.2rem; font-family:'DM Sans',sans-serif; font-size:0.9rem;">Message received! We'll get back to you very soon.</div>
+    <form id="contact-form" action="https://formspree.io/f/hello@sunsetarthotel.com" method="POST">
+      <input type="hidden" name="_replyto" value="">
+      <div class="form-row"><input type="text" name="name" placeholder="Your name" required></div>
+      <div class="form-row"><input type="email" name="email" placeholder="Email" required></div>
+      <div class="form-row"><input type="text" name="subject" placeholder="Subject"></div>
+      <div class="form-row"><textarea name="message" placeholder="Message" required></textarea></div>
+      <button type="submit" class="btn-neon">Send →</button>
+    </form>
   </div>
 </section>
 
@@ -1067,6 +1074,31 @@
       if (prevBtn) prevBtn.addEventListener('click', function(e) { e.stopPropagation(); goTo(idx - 1); });
       if (nextBtn) nextBtn.addEventListener('click', function(e) { e.stopPropagation(); goTo(idx + 1); });
       dots.forEach(function(d, i) { d.addEventListener('click', function() { goTo(i); }); });
+    });
+  })();
+
+  // Contact form submit
+  (function() {
+    var form = document.getElementById('contact-form');
+    var success = document.getElementById('contact-success');
+    if (!form) return;
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+      var data = new FormData(form);
+      fetch(form.action, {
+        method: 'POST',
+        body: data,
+        headers: { 'Accept': 'application/json' }
+      }).then(function(r) {
+        if (r.ok) {
+          success.style.display = 'block';
+          form.reset();
+          form.style.display = 'none';
+        }
+      }).catch(function() {
+        success.style.display = 'block';
+        success.textContent = 'Error sending. Please email us directly at hello@sunsetarthotel.com';
+      });
     });
   })();
 </script>
