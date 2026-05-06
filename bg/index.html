@@ -408,28 +408,7 @@
     .rooms-nav { display: none; }
     .say-info { grid-template-columns: 1fr; }
     .say-main-grid { grid-template-columns: 1fr !important; height: auto !important; max-height: none !important; }
-    .say-left-col {
-      height: 420px;
-      display: flex !important;
-      flex-direction: column !important;
-      align-items: center !important;
-      justify-content: center !important;
-      gap: 1.2rem !important;
-    }
-    .say-logo-outer {
-      position: relative !important;
-      bottom: auto !important; top: auto !important;
-      left: auto !important; transform: none !important;
-      order: 1 !important; z-index: 2;
-    }
-    .say-logo-inner { width: 140px !important; height: 140px !important; }
-    .say-tacos-wrap {
-      position: relative !important;
-      top: auto !important; left: auto !important;
-      transform: none !important;
-      order: 2 !important; z-index: 2;
-      width: 92% !important;
-    }
+    .say-left-col { height: 360px; }
     footer { flex-direction: column; gap: 1.5rem; text-align: center; }
     .hero-content { padding: 0 1.5rem 4rem; }
     .hero-title { font-size: clamp(3.5rem, 12vw, 11rem); }
@@ -1067,6 +1046,68 @@
       if (nextBtn) nextBtn.addEventListener('click', function(e) { e.stopPropagation(); goTo(idx + 1); });
       dots.forEach(function(d, i) { d.addEventListener('click', function() { goTo(i); }); });
     });
+  })();
+
+  // Sayulita mobile layout: logo centered above TACOS and chill
+  (function() {
+    function fixSayulitaMobile() {
+      var leftCol   = document.querySelector('.say-left-col');
+      var tacosWrap = document.querySelector('.say-tacos-wrap');
+      var logoOuter = document.querySelector('.say-logo-outer');
+      var logoInner = document.querySelector('.say-logo-inner');
+      if (!leftCol || !tacosWrap || !logoOuter) return;
+
+      if (window.innerWidth <= 900) {
+        leftCol.style.display        = 'flex';
+        leftCol.style.flexDirection  = 'column';
+        leftCol.style.alignItems     = 'center';
+        leftCol.style.justifyContent = 'center';
+        leftCol.style.gap            = '1.4rem';
+        leftCol.style.height         = '420px';
+
+        logoOuter.style.position = 'relative';
+        logoOuter.style.bottom   = 'auto';
+        logoOuter.style.left     = 'auto';
+        logoOuter.style.order    = '1';
+        if (logoInner) {
+          logoInner.style.width  = '150px';
+          logoInner.style.height = '150px';
+        }
+
+        tacosWrap.style.position  = 'relative';
+        tacosWrap.style.top       = 'auto';
+        tacosWrap.style.left      = 'auto';
+        tacosWrap.style.transform = 'none';
+        tacosWrap.style.order     = '2';
+        tacosWrap.style.width     = '92%';
+      } else {
+        // Restore desktop inline styles
+        leftCol.style.display = '';
+        leftCol.style.flexDirection = '';
+        leftCol.style.alignItems = '';
+        leftCol.style.justifyContent = '';
+        leftCol.style.gap = '';
+        leftCol.style.height = '';
+
+        logoOuter.style.position = 'absolute';
+        logoOuter.style.bottom   = '2rem';
+        logoOuter.style.left     = '2rem';
+        logoOuter.style.order    = '';
+        if (logoInner) {
+          logoInner.style.width  = '190px';
+          logoInner.style.height = '190px';
+        }
+
+        tacosWrap.style.position  = 'absolute';
+        tacosWrap.style.top       = '50%';
+        tacosWrap.style.left      = '50%';
+        tacosWrap.style.transform = 'translate(-50%,-50%)';
+        tacosWrap.style.order     = '';
+        tacosWrap.style.width     = '100%';
+      }
+    }
+    fixSayulitaMobile();
+    window.addEventListener('resize', fixSayulitaMobile);
   })();
 </script>
 </body>
