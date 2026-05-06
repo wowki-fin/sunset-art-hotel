@@ -408,10 +408,28 @@
     .rooms-nav { display: none; }
     .say-info { grid-template-columns: 1fr; }
     .say-main-grid { grid-template-columns: 1fr !important; height: auto !important; max-height: none !important; }
-    .say-left-col { height: 360px; }
-    .say-logo-outer { bottom: auto !important; top: 6% !important; left: 50% !important; transform: translateX(-50%) !important; }
-    .say-logo-inner { width: 130px !important; height: 130px !important; }
-    .say-tacos-wrap { top: 72% !important; }
+    .say-left-col {
+      height: 420px;
+      display: flex !important;
+      flex-direction: column !important;
+      align-items: center !important;
+      justify-content: center !important;
+      gap: 1.2rem !important;
+    }
+    .say-logo-outer {
+      position: relative !important;
+      bottom: auto !important; top: auto !important;
+      left: auto !important; transform: none !important;
+      order: 1 !important; z-index: 2;
+    }
+    .say-logo-inner { width: 140px !important; height: 140px !important; }
+    .say-tacos-wrap {
+      position: relative !important;
+      top: auto !important; left: auto !important;
+      transform: none !important;
+      order: 2 !important; z-index: 2;
+      width: 92% !important;
+    }
     footer { flex-direction: column; gap: 1.5rem; text-align: center; }
     .hero-content { padding: 0 1.5rem 4rem; }
     .hero-title { font-size: clamp(3.5rem, 12vw, 11rem); }
