@@ -22,9 +22,9 @@
         }
       ]
     },
-    { "source": "/bg/book-online", "destination": "/reservas/", "permanent": true },
-    { "source": "/en/book-online", "destination": "/reservas/", "permanent": true },
-    { "source": "/es/book-online", "destination": "/reservas/", "permanent": true },
-    { "source": "/book-online",    "destination": "/reservas/", "permanent": true }
+    { "source": "/bg/book-online", "destination": "https://www.sunsetarthotel.com/", "permanent": true },
+    { "source": "/en/book-online", "destination": "https://www.sunsetarthotel.com/", "permanent": true },
+    { "source": "/es/book-online", "destination": "https://www.sunsetarthotel.com/", "permanent": true },
+    { "source": "/book-online",    "destination": "https://www.sunsetarthotel.com/", "permanent": true }
   ]
 }
