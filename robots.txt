@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://sunset-art-hotel.vercel.app/sitemap.xml
+Sitemap: https://www.sunsetarthotel.com/sitemap.xml

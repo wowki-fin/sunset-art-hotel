@@ -9,5 +9,22 @@
         }
       ]
     }
+  ],
+  "redirects": [
+    {
+      "source": "/(.*)",
+      "destination": "https://www.sunsetarthotel.com/$1",
+      "permanent": true,
+      "has": [
+        {
+          "type": "host",
+          "value": "sunset-art-hotel.vercel.app"
+        }
+      ]
+    },
+    { "source": "/bg/book-online", "destination": "/reservas/", "permanent": true },
+    { "source": "/en/book-online", "destination": "/reservas/", "permanent": true },
+    { "source": "/es/book-online", "destination": "/reservas/", "permanent": true },
+    { "source": "/book-online",    "destination": "/reservas/", "permanent": true }
   ]
 }
