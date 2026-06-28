@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+  <title>SUNSET ART HOTEL — Breakfast</title>
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="icon" type="image/png" href="../favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@400;500;600;700&family=Pacifico&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: #f2ede6;
+      color: #1c1a18;
+      font-family: 'DM Sans', sans-serif;
+      min-height: 100vh;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    .wrap { max-width: 480px; margin: 0 auto; }
+
+    /* ── HERO ── */
+    .hero {
+      background: #1a2744;
+      text-align: center;
+      padding: 48px 24px 40px;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, #ff3fa4, #b8922a);
+    }
+    .hero-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 46px;
+      letter-spacing: 4px;
+      color: #f2ede6;
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+    .hero-art {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 46px;
+      font-style: italic;
+      color: transparent;
+      -webkit-text-stroke: 1.5px #ff3fa4;
+      line-height: 0.9;
+    }
+    .hero-subtitle {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 22px;
+      letter-spacing: 6px;
+      color: #b8922a;
+      margin-top: 14px;
+    }
+    .hero-hours {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 13px;
+      font-weight: 500;
+      color: rgba(242,237,230,0.7);
+      margin-top: 10px;
+      letter-spacing: 1px;
+    }
+
+    /* ── STICKY NAV ── */
+    .sticky-nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: #1a2744;
+      border-bottom: 2px solid #ff3fa4;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 18px;
+    }
+    .nav-brand {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 14px;
+      letter-spacing: 3px;
+      color: #f2ede6;
+    }
+    .lang-toggle {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+    .lang-btn {
+      background: none;
+      border: none;
+      border-bottom: 2px solid transparent;
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 700;
+      font-size: 13px;
+      letter-spacing: 1px;
+      color: #7a7570;
+      cursor: pointer;
+      padding: 2px 5px 3px;
+      transition: color .2s, border-color .2s;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .lang-btn.active {
+      color: #ff3fa4;
+      border-bottom-color: #ff3fa4;
+    }
+    .lang-sep { color: #7a7570; font-size: 13px; padding: 0 1px; }
+
+    /* ── INFO BOX ── */
+    .info-box {
+      max-width: 480px;
+      margin: 20px auto 0;
+      padding: 0 16px;
+    }
+    .info-box-inner {
+      background: #1a2744;
+      border-radius: 14px;
+      padding: 18px 20px;
+      text-align: center;
+      border: 1px solid rgba(184,146,42,0.3);
+    }
+    .info-icon {
+      font-size: 24px;
+      margin-bottom: 8px;
+    }
+    .info-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 16px;
+      letter-spacing: 2px;
+      color: #b8922a;
+      margin-bottom: 6px;
+    }
+    .info-text {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 13px;
+      line-height: 1.5;
+      color: rgba(242,237,230,0.85);
+    }
+    .info-text strong {
+      color: #ff3fa4;
+      font-weight: 600;
+    }
+
+    /* ── SECTIONS ── */
+    .menu-sections {
+      max-width: 480px;
+      margin: 20px auto 0;
+    }
+    .menu-section { margin-bottom: 2px; }
+
+    .section-header {
+      background: linear-gradient(90deg, #ff3fa4, #c42d7f);
+      padding: 11px 18px;
+      box-shadow: 0 4px 18px rgba(255,63,164,.25);
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 12px;
+    }
+    .section-name {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 20px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #fff;
+      white-space: nowrap;
+    }
+    .section-subtitle {
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 600;
+      font-size: 11px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.85);
+      text-align: right;
+    }
+
+    /* ── ITEM ROW ── */
+    .item-row {
+      display: flex;
+      padding: 15px 18px;
+      gap: 14px;
+      align-items: flex-start;
+      border-bottom: 1px solid rgba(26,39,68,0.08);
+      background: #f2ede6;
+    }
+    .item-row:last-child { border-bottom: none; }
+    .item-photo {
+      width: 106px;
+      height: 94px;
+      border-radius: 14px;
+      overflow: hidden;
+      border: 1px solid rgba(26,39,68,0.1);
+      box-shadow: 0 4px 12px rgba(0,0,0,.12);
+      flex-shrink: 0;
+    }
+    .item-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .item-text { flex: 1; min-width: 0; }
+    .item-name-row {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 8px;
+      margin-bottom: 4px;
+    }
+    .item-name {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 18px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: #1a2744;
+      flex: 1;
+      min-width: 0;
+      line-height: 1.15;
+    }
+    .item-price {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 17px;
+      color: #b8922a;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+    .item-desc {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 13px;
+      line-height: 1.48;
+      color: #7a7570;
+      margin-top: 3px;
+    }
+    .included-badge {
+      display: inline-block;
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 700;
+      font-size: 9px;
+      letter-spacing: 1.5px;
+      color: #fff;
+      background: #b8922a;
+      padding: 2px 7px;
+      border-radius: 4px;
+      margin-left: 6px;
+      vertical-align: middle;
+      line-height: 1.4;
+      text-transform: uppercase;
+    }
+    .extra-badge {
+      display: inline-block;
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 700;
+      font-size: 9px;
+      letter-spacing: 1.5px;
+      color: #fff;
+      background: #ff3fa4;
+      padding: 2px 7px;
+      border-radius: 4px;
+      margin-left: 6px;
+      vertical-align: middle;
+      line-height: 1.4;
+      text-transform: uppercase;
+    }
+
+    /* ── ALLERGEN NOTE ── */
+    .allergen-note {
+      max-width: 480px;
+      margin: 20px auto 0;
+      padding: 0 16px;
+    }
+    .allergen-note-inner {
+      background: rgba(26,39,68,0.04);
+      border: 1px solid rgba(26,39,68,0.08);
+      border-radius: 12px;
+      padding: 14px 18px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 12px;
+      color: #7a7570;
+      line-height: 1.5;
+      text-align: center;
+    }
+
+    /* ── FOOTER ── */
+    .footer {
+      text-align: center;
+      padding: 32px 24px 52px;
+      margin-top: 24px;
+      background: #1a2744;
+    }
+    .footer-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 28px;
+      letter-spacing: 4px;
+      color: #f2ede6;
+      margin-bottom: 2px;
+    }
+    .footer-art {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 28px;
+      font-style: italic;
+      color: transparent;
+      -webkit-text-stroke: 1px #ff3fa4;
+      margin-bottom: 14px;
+    }
+    .footer-location {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 11px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: #7a7570;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HERO -->
+  <div class="wrap">
+    <header class="hero">
+      <div class="hero-title">SUNSET</div>
+      <div class="hero-art">Art</div>
+      <div class="hero-subtitle" id="js-hero-sub">BREAKFAST</div>
+      <p class="hero-hours">08:30 — 10:30</p>
+    </header>
+  </div>
+
+  <!-- STICKY NAV -->
+  <nav class="sticky-nav">
+    <span class="nav-brand">SUNSET ART</span>
+    <div class="lang-toggle">
+      <button class="lang-btn" data-lang="bg" id="btn-bg">BG</button>
+      <span class="lang-sep">/</span>
+      <button class="lang-btn" data-lang="en" id="btn-en">EN</button>
+    </div>
+  </nav>
+
+  <!-- INFO BOX -->
+  <div class="info-box">
+    <div class="info-box-inner" id="js-info-box">
+    </div>
+  </div>
+
+  <!-- MENU SECTIONS -->
+  <main class="menu-sections" id="js-sections"></main>
+
+  <!-- ALLERGEN NOTE -->
+  <div class="allergen-note">
+    <div class="allergen-note-inner" id="js-allergen-note"></div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-title">SUNSET</div>
+    <div class="footer-art">Art</div>
+    <p class="footer-location" id="js-footer-loc"></p>
+  </footer>
+
+<script>
+// ── DATA ──────────────────────────────────────────────────────────────────────
+const MENU = {
+  "location": {
+    "en": "ul. Cherno More 1 · Chernomorets · Bulgaria",
+    "bg": "ул. Черно Море 1 · Черноморец · България"
+  },
+  "sections": [
+    {
+      "id": "dishes",
+      "name": { "en": "CHOOSE YOUR DISH", "bg": "ИЗБЕРЕТЕ ВАШЕТО ЯСТИЕ" },
+      "subtitle": { "en": "One dish included", "bg": "Едно ястие включено" },
+      "items": [
+        {
+          "id": "avocado-toast",
+          "name": { "en": "Avocado Toast", "bg": "Авокадо Тост" },
+          "desc": { "en": "Sourdough toast with smashed avocado, cherry tomatoes, seeds & a drizzle of olive oil.", "bg": "Тост от квасен хляб с авокадо, чери домати, семена и зехтин." },
+          "photo": null,
+          "included": true
+        },
+        {
+          "id": "spanish-toast",
+          "name": { "en": "Spanish Toast", "bg": "Испански Тост" },
+          "desc": { "en": "Toasted bread rubbed with ripe tomato, garlic, olive oil & Serrano ham.", "bg": "Препечен хляб с узрял домат, чесън, зехтин и Серано шунка." },
+          "photo": null,
+          "included": true
+        },
+        {
+          "id": "omelette",
+          "name": { "en": "Omelette", "bg": "Омлет" },
+          "desc": { "en": "Three-egg omelette with your choice of fillings: cheese, ham, vegetables or mushrooms.", "bg": "Омлет от три яйца с пълнеж по избор: сирене, шунка, зеленчуци или гъби." },
+          "photo": null,
+          "included": true
+        },
+        {
+          "id": "scramble-eggs",
+          "name": { "en": "Scramble Eggs", "bg": "Бъркани Яйца" },
+          "desc": { "en": "Creamy scrambled eggs with butter, served with toast & fresh herbs.", "bg": "Кремообразни бъркани яйца с масло, поднесени с тост и свежи подправки." },
+          "photo": null,
+          "included": true
+        },
+        {
+          "id": "yogurt",
+          "name": { "en": "Yogurt with Fruit", "bg": "Кисело Мляко с Плодове" },
+          "desc": { "en": "Creamy yogurt with seasonal fresh fruit, honey & granola.", "bg": "Кисело мляко със сезонни пресни плодове, мед и гранола." },
+          "photo": null,
+          "included": true
+        }
+      ]
+    },
+    {
+      "id": "drinks",
+      "name": { "en": "INCLUDED DRINKS", "bg": "ВКЛЮЧЕНИ НАПИТКИ" },
+      "subtitle": { "en": "With your breakfast", "bg": "Към закуската" },
+      "items": [
+        { "id": "espresso", "name": { "en": "Espresso (short / long)", "bg": "Еспресо (къро / дълго)" }, "desc": { "en": null, "bg": null }, "photo": null, "included": true },
+        { "id": "americano", "name": { "en": "Café Americano", "bg": "Кафе Американо" }, "desc": { "en": null, "bg": null }, "photo": null, "included": true },
+        { "id": "tea", "name": { "en": "Tea", "bg": "Чай" }, "desc": { "en": null, "bg": null }, "photo": null, "included": true },
+        { "id": "oj", "name": { "en": "Fresh Orange Juice", "bg": "Прясно изцеден портокалов сок" }, "desc": { "en": null, "bg": null }, "photo": null, "included": true },
+        { "id": "water", "name": { "en": "Water", "bg": "Вода" }, "desc": { "en": null, "bg": null }, "photo": null, "included": true },
+        { "id": "milk", "name": { "en": "Extra Milk", "bg": "Допълнително мляко" }, "desc": { "en": null, "bg": null }, "photo": null, "included": true }
+      ]
+    },
+    {
+      "id": "extras",
+      "name": { "en": "EXTRAS", "bg": "ДОПЪЛНИТЕЛНО" },
+      "subtitle": { "en": "Additional charge", "bg": "С доплащане" },
+      "items": [
+        { "id": "extra-dish", "name": { "en": "Extra Dish", "bg": "Допълнително ястие" }, "desc": { "en": "Any dish from the menu above.", "bg": "Всяко ястие от менюто по-горе." }, "photo": null, "price": "5,50 €", "included": false },
+        { "id": "cappuccino", "name": { "en": "Cappuccino", "bg": "Капучино" }, "desc": { "en": null, "bg": null }, "photo": null, "price": "3,50 €", "included": false }
+      ]
+    }
+  ]
+};
+
+// ── STRINGS ───────────────────────────────────────────────────────────────────
+const STRINGS = {
+  en: {
+    info_title: 'BREAKFAST INCLUDED',
+    info_html: 'Every breakfast includes <strong>one dish</strong> of your choice, plus <strong>coffee, tea, fresh orange juice & water</strong>.',
+    allergen: 'Please inform our staff of any food allergies or dietary requirements.',
+    included: 'INCLUDED',
+    extra: 'EXTRA'
+  },
+  bg: {
+    info_title: 'ЗАКУСКА ВКЛЮЧЕНА',
+    info_html: 'Всяка закуска включва <strong>едно ястие</strong> по избор, плюс <strong>кафе, чай, прясно изцеден портокалов сок и вода</strong>.',
+    allergen: 'Моля, информирайте персонала за хранителни алергии или специални изисквания.',
+    included: 'ВКЛЮЧЕНО',
+    extra: 'ЕКСТРА'
+  }
+};
+
+// ── STATE ─────────────────────────────────────────────────────────────────────
+let lang = localStorage.getItem('sunsetBreakfastLang') || 'bg';
+
+// ── RENDER ────────────────────────────────────────────────────────────────────
+function render() {
+  const s = STRINGS[lang];
+
+  // Info box
+  document.getElementById('js-info-box').innerHTML =
+    `<div class="info-icon">&#9749;</div>
+     <div class="info-title">${s.info_title}</div>
+     <p class="info-text">${s.info_html}</p>`;
+
+  // Sections
+  const main = document.getElementById('js-sections');
+  main.innerHTML = MENU.sections.map(sec => {
+    const items = sec.items.map(item => {
+      const name = item.name[lang];
+      const desc = item.desc && item.desc[lang];
+      const photo = item.photo
+        ? `<div class="item-photo"><img src="${item.photo}" alt="${name}" loading="lazy"></div>`
+        : '';
+      const descHtml = desc ? `<p class="item-desc">${desc}</p>` : '';
+      const priceHtml = item.price ? `<span class="item-price">${item.price}</span>` : '';
+      const badge = item.included
+        ? `<span class="included-badge">${s.included}</span>`
+        : `<span class="extra-badge">${s.extra}</span>`;
+      return `
+        <div class="item-row">
+          ${photo}
+          <div class="item-text">
+            <div class="item-name-row">
+              <span class="item-name">${name}${badge}</span>
+              ${priceHtml}
+            </div>
+            ${descHtml}
+          </div>
+        </div>`;
+    }).join('');
+
+    return `
+      <section class="menu-section" id="sec-${sec.id}">
+        <div class="section-header">
+          <span class="section-name">${sec.name[lang]}</span>
+          <span class="section-subtitle">${sec.subtitle[lang]}</span>
+        </div>
+        ${items}
+      </section>`;
+  }).join('');
+
+  // Allergen note
+  document.getElementById('js-allergen-note').textContent = s.allergen;
+
+  // Footer
+  document.getElementById('js-footer-loc').textContent = MENU.location[lang];
+
+  // Lang buttons
+  document.getElementById('btn-bg').classList.toggle('active', lang === 'bg');
+  document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+  document.querySelector('html').lang = lang;
+}
+
+// ── LANG SWITCH ───────────────────────────────────────────────────────────────
+function setLang(l) {
+  lang = l;
+  localStorage.setItem('sunsetBreakfastLang', lang);
+  render();
+}
+
+// ── INIT ──────────────────────────────────────────────────────────────────────
+document.querySelectorAll('.lang-btn').forEach(btn => {
+  btn.addEventListener('click', () => setLang(btn.dataset.lang));
+});
+render();
+</script>
+</body>
+</html>
